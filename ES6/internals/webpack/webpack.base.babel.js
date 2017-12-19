@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (options) => ({
   entry: options.entry,
@@ -58,7 +59,10 @@ module.exports = (options) => ({
       query: {
         limit: 10000,
       },
-    }],
+    }, {
+      test: require.resolve('flexmonster/flexmonster.js'),
+      loader: 'exports-loader?Flexmonster'
+    }]
   },
   plugins: options.plugins.concat([
     new webpack.ProvidePlugin({
@@ -75,6 +79,12 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
+    new webpack.ProvidePlugin({
+      Flexmonster: 'flexmonster/flexmonster.js'
+    }),
+    new CopyWebpackPlugin([
+      { from: 'node_modules/flexmonster', to: path.resolve(process.cwd(), 'build/flexmonster') }
+    ]),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],

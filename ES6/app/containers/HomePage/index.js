@@ -27,7 +27,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return (
 
     <div>
-      <FlexmonsterReact.Pivot toolbar={true} componentFolder="https://cdn.flexmonster.com/" width="800px" report="https://cdn.flexmonster.com/reports/report.json"/>
+      <FlexmonsterReact.Pivot toolbar={true} licenseKey="Z7VX-XCJ54C-2I6H1A-3K0F3X" width="800px" report="https://cdn.flexmonster.com/reports/report.json"/>
     </div>
     );
   }
